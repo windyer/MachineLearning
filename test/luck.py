@@ -42,10 +42,9 @@ def info(t):
                 print "-"*100
         fp.write("\ntotal : " + str(total) + "\n")
         fp.close()
-date=["2016-12-30","2016-12-31","2017-01-01","2017-01-02","2017-01-03"]
+date=["2017-12-31","2017-01-01","2017-01-02","2017-01-03","2017-01-04"]
 for i in date:
-    cmd = '''cat three.log.{0} | grep "NotifyThreePoolRequest" > three.txt.{1}'''.format(i,i)
-    cmd2 = '''cat fruit.log.{0} | grep "NotifyFruitPoolRequest" > three.txt.{1}'''.format(i, i)
+    cmd = '''cat lobby.log.{0} | grep "'reason': 'luck_bag'" > luck.txt.{1}'''.format(i,i)
     os.system(cmd)
-    os.system(cmd2)
+    info(i)
 

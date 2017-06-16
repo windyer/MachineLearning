@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>Tornado Websocket</title>
+</head>
+<script type="text/javascript">
+	var ws;
+	var input_data = "";
+	function onLoad(){
+		ws = new WebSocket("ws://127.0.0.1:8080/ws");
+		ws.onmessage = function(e){
+//			alert(e.data);
+			var msgs = document.getElementById('msgShow').innerText;
+		console.log(msgs);
+		input_data = e.data;
+		document.getElementById('msgShow').innerText =msgs + input_data;
+		}
+//				alert(input_data);
+	}
+	function sendMsg(){
+		ws.send(document.getElementById('msg').value);
+	}
+</script>
+<body onload='onLoad();'>
+	Message to send:   <input type="text" id="msg" />
+	  <input type="button" onclick="sendMsg();" value="发送" />
+	<div id="msgShow" style="height: auto;border: 1px solid #666;"></div>
+        <form class="navbar-form navbar-left" action="http://114.215.129.89/three/xadmin/player/activate/" method="post">
+          <div class="input-group">
+          <input type='hidden' name='csrfmiddlewaretoken' value='Eg53toOTu3Eo8dQqgt4LXlXEDCKq9E3c' />
+          <input type='text' class="form-control" name='activation_user_id' placeholder="user_id"/>
+          <input type='radio' name='activation_status' value=1 />解封
+          <input type='radio' name='activation_status' value=0 checked="checked" />封号
+          <span class="input-group-btn">
+            <button id="btn_player_activation" class="btn btn-primary" type="submit">POST</button>
+          </span>
+          </div>
+        </form>
+</body>
+</html>

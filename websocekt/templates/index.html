@@ -1,0 +1,20 @@
+<html>
+<head>
+<script type="text/javascript">
+var ws = new WebSocket("ws://localhost:12345/chat");
+ws.onmessage = function(event) {
+    console.log(event);
+}
+function send() {
+    ws.send(document.getElementById('chat').value );
+}
+</script>
+</head>
+
+
+<body onload='onLoad();'>
+	Message to send: <input type="text" id="msg" />
+	  <input type="button" onclick="send();" value="发送" />
+
+</body>
+</html>

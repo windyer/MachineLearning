@@ -1,22 +1,18 @@
-class Bunch(object):
-    def __init__(self,**kwd):
-        self.__dict__.update(kwd)
+#coding:utf-8
+#Test one page
+import pytesseract
+from PIL import Image
 
-test = Bunch(a=1,b=2,c=3)
-test.c=4
-#print test.a,test.c
+def processImage():
+    image = Image.open('11.png')
 
-a=["B","a","c","D"]
-b=sorted(a,key=str.lower)
-#print b
+    #背景色处理，可有可无
+    image = image.point(lambda x: 0 if x < 143 else 255)
+    newFilePath = '22.png'
+    image.save(newFilePath)
 
-from operator import itemgetter
-dic={"a":3,"b":1,"c":8}
-dic2 = sorted(dic.iteritems(),key=itemgetter(1),reverse=False)
-print dic2
-#[('b', 1), ('a', 3), ('c', 8)]
-x = [{'name':'Homer', 'age':39}, {'name':'Bart', 'age':40}]
-sorted_x = sorted(x, key=itemgetter('age'))
-print sorted_x
-#[{'age': 10, 'name': 'Bart'}, {'age': 39, 'name': 'Homer'}]
+    content = pytesseract.image_to_string(Image.open(newFilePath), lang='chi_sim')
+    #中文图片的话，是lang='chi_sim'
+    print(content)
 
+processImage()
