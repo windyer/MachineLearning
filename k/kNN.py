@@ -1,7 +1,6 @@
 #coding=utf-8
 import numpy
 import operator
-import matplotlib
 from numpy import zeros
 import matplotlib.pyplot as plt
 from os import listdir
